@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UrbanResQ • Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <img class="logo" src="assets/logo.jpeg" alt="UrbanResQ logo" />
+      <span class="brand-text">UrbanResQ</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="dashboard.html">Dashboard</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+
+  <!-- Header panel -->
+  <div class="panel hero-panel">
+    <div class="hero-head">
+      <div>
+        <h1 class="page-title">Live Monitoring Dashboard</h1>
+        <p class="mini-muted">Real-time Flood + Heat monitoring • Auto-refresh every 3 seconds</p>
+      </div>
+      <div class="status-pill" id="statusPill">Connecting…</div>
+    </div>
+
+    <div class="controls">
+      <div class="control-block">
+        <label class="label">Backend URL</label>
+        <input id="backendUrl" class="input" value="http://192.168.1.7:8001" />
+      </div>
+
+      <div class="control-block">
+        <label class="label">location_id</label>
+        <input id="locationId" class="input" value="loc_1" />
+      </div>
+
+      <button id="btnRefresh" class="btn btn-primary">Refresh now</button>
+      <div class="tiny" id="statusText">—</div>
+    </div>
+  </div>
+
+  <!-- KPI cards -->
+  <div class="grid2">
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Latest Reading</h2>
+        <span class="meta" id="readingTime">—</span>
+      </div>
+      <div class="big" id="waterText">—</div>
+      <div class="subline" id="readingSub">—</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Risk Level</h2>
+        <span class="meta" id="riskTime">—</span>
+      </div>
+      <div class="big" id="riskText">—</div>
+      <div class="subline" id="riskReasons">—</div>
+    </div>
+  </div>
+
+  <!-- Charts + Risk donut -->
+  <div class="grid3">
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Water Level Trend</h2>
+        <span class="meta" id="waterMeta">Last 40 readings</span>
+      </div>
+      <canvas id="waterChart" height="140"></canvas>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Temperature Trend</h2>
+        <span class="meta" id="tempMeta">Last 40 readings</span>
+      </div>
+      <canvas id="tempChart" height="140"></canvas>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Risk Score</h2>
+        <span class="meta">0–100</span>
+      </div>
+      <div class="donut-wrap">
+        <canvas id="riskDonut" height="200"></canvas>
+        <div class="donut-center">
+          <div class="donut-num" id="riskScoreText">—</div>
+          <div class="donut-sub">score</div>
+        </div>
+      </div>
+      <div class="subline muted" id="donutHint">Based on water + temperature</div>
+    </div>
+  </div>
+
+  <!-- Map + Alerts -->
+  <div class="grid2">
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Map</h2>
+        <span class="meta">Locations from /api/locations</span>
+      </div>
+      <div id="map" class="map"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">
+        <h2>Alerts</h2>
+        <span class="meta" id="alertsMeta">—</span>
+      </div>
+      <div id="alertsList" class="list">Loading…</div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="panel">
+    <div class="panel-title">
+      <h2>Latest Readings Table</h2>
+      <span class="meta">From /api/readings/history</span>
+    </div>
+    <div style="overflow:auto;">
+      <table class="table" id="readingsTable"></table>
+    </div>
+  </div>
+
+  <div class="footer">
+    © <span id="year"></span> UrbanResQ. Created by Thin Thet Htar San.
+  </div>
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

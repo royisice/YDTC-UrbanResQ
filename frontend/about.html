@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UrbanResQ • About</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <img class="logo" src="assets/logo.jpeg" alt="UrbanResQ logo" />
+      <span class="brand-text">UrbanResQ</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a class="active" href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <div class="panel">
+    <h1 class="page-title">About UrbanResQ</h1>
+    <p class="mini-muted">
+      A prototype system for Flood + Extreme Heat + Water Salinity monitoring using IoT sensors and a live dashboard.
+    </p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h2>What it does</h2>
+      <ul class="bullets">
+        <li>Receives sensor readings via REST API ingest</li>
+        <li>Stores readings in SQLite (prototype-friendly)</li>
+        <li>Calculates risk levels and generates alerts</li>
+        <li>Shows live dashboard for quick decision-making</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Tech stack</h2>
+      <ul class="bullets">
+        <li>Backend: FastAPI (Python)</li>
+        <li>Database: SQLite (SQLAlchemy)</li>
+        <li>Frontend: HTML/CSS/JS</li>
+        <li>Integration: ESP32 sensor → API ingest</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Credits</h2>
+    <p>Created by <b>Thin Thet Htar San</b> • UrbanResQ (YDTC Prototype)</p>
+  </div>
+
+  <div class="footer">
+    © <span id="year"></span> UrbanResQ. Created by Thin Thet Htar San.
+  </div>
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
